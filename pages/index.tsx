@@ -68,7 +68,7 @@ export default function Home(props: TextAreaProps) {
       <div className="wrap">
         <div className="scroll">
           <div className="inner">
-            가나다라마바<a href="https://nextjs.org"></a>
+            https://javascript.info/size-and-scroll<a href="https://nextjs.org"></a>
           </div>
         </div>
 

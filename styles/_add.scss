@@ -1,14 +1,10 @@
-.user_space_wrap {
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap");
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+.user_enter_wrap {
   position: relative;
 }
-.recommends_question_wrap {
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  right: 0;
-  background-color: skyblue;
-}
-////////////////////
 .typing_wrap {
   position: relative;
   display: flex;
@@ -25,7 +21,7 @@
     box-shadow: none;
   }
 
-  .btn_recommends {
+  .btn_menu {
     flex-shrink: 0;
     width: 40px;
     height: 44px;
@@ -39,15 +35,6 @@
   }
 }
 
-// 오픈
-.recommends_question_wrap.opened {
-  + .typing_wrap {
-    .btn_recommends {
-      background-color: #ddd;
-    }
-  }
-}
-
 // 사용자 입력창
 .chat_input_wrap {
   position: relative;
@@ -56,30 +43,73 @@
   align-items: center;
   justify-content: center;
   padding: 12px 40px 13px 12px;
-  border-radius: 8px;
   background-color: darkcyan;
 
   &.disabled {
     background-color: #ccc;
   }
+  .chat_input_inner {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    font-size: 16px;
+    line-height: 1.1875;
+    font-family: "Noto Sans KR", sans-serif;
+  }
   .chat_input {
+    z-index: 1;
+    position: relative;
     $max_lines: 5;
     flex-grow: 1;
+    display: block;
     max-height: 19 * $max_lines * 1px;
-    line-height: 19px;
-    color: cadetblue;
-    font-size: 16px;
-
+    line-height: 1.1875;
+    height: 19px;
+    color: #fff;
+    width: 100%;
     font-weight: 400;
     scrollbar-width: none;
+    opacity: 0;
+    font-size: inherit;
+    font-family: inherit;
 
     &::-webkit-scrollbar {
       display: none;
     }
 
     &::placeholder {
-      color: var(--g40);
+      color: #aaa;
+      font-size: inherit;
+      font-family: inherit;
     }
+  }
+
+  .fake_input {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    line-height: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    opacity: 1;
+    background-color: transparent;
+    color: #fff;
+    font-size: inherit;
+    font-family: inherit;
+    &.placeholder {
+      color: #aaa;
+      opacity: 1;
+    }
+  }
+  .chat_input:focus-within {
+    opacity: 1;
+  }
+  .chat_input:focus + .fake_input {
+    background-color: #fff;
+    opacity: 0;
   }
 
   .btn_send {
@@ -89,10 +119,7 @@
     width: 36px;
     height: 36px;
     padding: 0;
-    border-radius: 50%;
     background-color: blue;
-    transition: background-color 0.12s ease-in-out;
-    will-change: auto;
 
     &:before {
       content: "";

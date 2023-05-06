@@ -1,0 +1,107 @@
+.user_space_wrap {
+  position: relative;
+}
+.recommends_question_wrap {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  background-color: skyblue;
+}
+////////////////////
+.typing_wrap {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 13px 16px 5px;
+  border-radius: 20px 20px 0 0;
+  background-color: #ededed;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.08);
+
+  &.disabled {
+    background-color: #ededed;
+    box-shadow: none;
+  }
+
+  .btn_recommends {
+    flex-shrink: 0;
+    width: 40px;
+    height: 44px;
+    margin-top: auto;
+    margin-right: 4px;
+    background-color: blueviolet;
+
+    &:disabled {
+      background-color: violet;
+    }
+  }
+}
+
+// 오픈
+.recommends_question_wrap.opened {
+  + .typing_wrap {
+    .btn_recommends {
+      background-color: #ddd;
+    }
+  }
+}
+
+// 사용자 입력창
+.chat_input_wrap {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 40px 13px 12px;
+  border-radius: 8px;
+  background-color: darkcyan;
+
+  &.disabled {
+    background-color: #ccc;
+  }
+  .chat_input {
+    $max_lines: 5;
+    flex-grow: 1;
+    max-height: 19 * $max_lines * 1px;
+    line-height: 19px;
+    color: cadetblue;
+    font-size: 16px;
+
+    font-weight: 400;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &::placeholder {
+      color: var(--g40);
+    }
+  }
+
+  .btn_send {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: blue;
+    transition: background-color 0.12s ease-in-out;
+    will-change: auto;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: olivedrab;
+    }
+  }
+}

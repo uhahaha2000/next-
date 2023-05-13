@@ -376,12 +376,11 @@
 }
 
 // animation-------------------------------------------
-.screen_scroll,
-.screen_scroll.ani-init {
-  // pointer-events: none;
+.screen_scroll {
+  pointer-events: none;
 
   .balloon {
-    opacity: 1;
+    opacity: 0;
   }
 }
 

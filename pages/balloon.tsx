@@ -1,7 +1,14 @@
 import "../styles/balloon.scss";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
 export default function Balloon() {
+  const [isAnimationStarted, setIsAnimationStarted] = useState(false);
+
+  useEffect(() => {
+    setIsAnimationStarted(true);
+  }, []);
+
   return (
     <>
       <Head>
@@ -14,7 +21,11 @@ export default function Balloon() {
           <div className="mobile_wrap">
             <div className="mobile_head"></div>
             <div className="mobile_body">
-              <div className="screen_scroll">
+              <div
+                className={`screen_scroll ${
+                  isAnimationStarted ? "ani-init ani-play" : ""
+                } `}
+              >
                 <div className="balloon-list">
                   <div className="balloon receive">
                     <div className="balloon_content">

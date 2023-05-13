@@ -1,13 +1,31 @@
 import "../styles/balloon.scss";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Balloon() {
-  const [isAnimationStarted, setIsAnimationStarted] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    setIsAnimationStarted(true);
-  }, []);
+    const screenScroll = document.querySelector(".screen_scroll");
+    const balloons = document.querySelectorAll(".balloon");
+    const balloonLength = balloons.length;
+
+    function showNextElement() {
+      console.log(currentIndex, balloonLength);
+      if (currentIndex >= balloonLength) {
+        screenScroll.classList.add("end"); // 모든 말풍선보이면 end 클래스 추가
+        return;
+      }
+      balloons[currentIndex].classList.add("show");
+      setCurrentIndex(currentIndex + 1);
+      screenScroll.scrollTop = screenScroll.scrollHeight;
+    }
+    setTimeout(showNextElement, 500);
+
+    return () => {
+      showNextElement();
+    };
+  }, [currentIndex]);
 
   return (
     <>
@@ -21,11 +39,7 @@ export default function Balloon() {
           <div className="mobile_wrap">
             <div className="mobile_head"></div>
             <div className="mobile_body">
-              <div
-                className={`screen_scroll ${
-                  isAnimationStarted ? "ani-init ani-play" : ""
-                } `}
-              >
+              <div className="screen_scroll">
                 <div className="balloon-list">
                   <div className="balloon receive">
                     <div className="balloon_content">

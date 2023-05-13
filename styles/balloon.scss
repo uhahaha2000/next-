@@ -24,8 +24,8 @@
     max-width: 100%;
     padding: 10px 16px;
     background-color: palevioletred;
-    line-height: 24px;
-    font-size: 16px;
+
+    font-size: 12px;
     word-wrap: break-word;
     text-align: left;
   }
@@ -35,6 +35,7 @@
     position: relative;
     margin-right: 6px;
     margin-left: 6px;
+    text-align: left;
 
     .balloon_content {
       position: relative;
@@ -80,82 +81,6 @@
     .balloon_table_inner {
       position: relative;
     }
-
-    .util_wrap {
-      position: absolute;
-      top: 1px;
-      right: 1px;
-      bottom: 1px;
-      display: none;
-      overflow: hidden;
-      width: 30px;
-      border-radius: 0 7px 8px 0;
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0%,
-        #fff 148.33%
-      );
-
-      .ico_arrow_more {
-        position: absolute;
-        top: -1px;
-        right: -1px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 14px;
-        height: 41px;
-
-        &:before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: block;
-          flex: none;
-          opacity: 0.7;
-          width: 100%;
-          height: 100%;
-          background-color: red;
-        }
-
-        &:after {
-          content: "";
-          display: block;
-          width: 12px;
-          height: 12px;
-          background-color: paleturquoise;
-          transform: rotate(-90deg);
-          //mask-image: url('/assets/ic12/s_arrow_down.svg');
-          mask-repeat: no-repeat;
-          mask-size: 100% 100%;
-          mask-position: 50% 50%;
-        }
-      }
-
-      .btn_zoom {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-
-        &:before {
-          content: "";
-          display: block;
-          width: 24px;
-          height: 24px;
-          background-color: paleturquoise;
-          //mask-image: url('/assets/ic24/l/maximize.svg');
-          mask-repeat: no-repeat;
-          mask-size: 100% 100%;
-          mask-position: 50% 50%;
-        }
-      }
-    }
   }
 }
 
@@ -187,8 +112,7 @@
   .table {
     width: 100%;
     border-spacing: 0;
-    line-height: 21px;
-    font-size: 14px;
+    font-size: 12px;
     word-wrap: break-word;
     word-break: keep-all;
 
@@ -376,6 +300,7 @@
 }
 
 // animation-------------------------------------------
+/*
 .screen_scroll {
   pointer-events: none;
 
@@ -402,7 +327,8 @@
   }
 }
 
-.screen_scroll.ani-play {
+
+.screen_scroll.start {
   .balloon {
     $animation-delay: 0s;
     $animation-duration: 0.4s;
@@ -413,18 +339,47 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     @for $i from 1 through 6 {
-      &:nth-child(#{$i}) {
+      &:nth-child({$i}) {
         $animation-delay: $animation-delay + $animation-duration;
         animation-delay: $animation-delay;
       }
     }
   }
 }
+*/
 
-.screen_scroll.ani-end {
+.screen_scroll {
+  pointer-events: none;
+  box-sizing: border-box;
+  overflow-y: scroll !important;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 100%;
+    background-color: transparent;
+    border-radius: 100px;
+  }
+}
+.balloon {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
+
+.screen_scroll.end {
   pointer-events: auto;
+  display: block;
 
+  &::-webkit-scrollbar-thumb {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+  }
   .balloon {
-    opacity: 1;
+    display: block;
   }
 }
